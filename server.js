@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
+const sequelize = require('./config/connection');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -21,5 +22,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // todo: set up middlewear for session, routes, etc.
 
-// Create Server
-app.listen(PORT, () => console.log(`Now listening on ${PORT}`));
+// Synchronize sequelize DB and start server
+sequelize.sync({ force: true }).then(() => {
+    app.listen(PORT, () => console.log(`Now listening on ${PORT}`));
+});
