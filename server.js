@@ -24,8 +24,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // use routes
 app.use(routes);
 
-// todo: set up middlewear for session, routes, etc.
-
 // Synchronize sequelize DB and start server
 sequelize.sync({ force: true }).then(() => {
     app.listen(PORT, () => console.log(`Now listening on ${PORT}`));
