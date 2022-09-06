@@ -5,19 +5,3 @@ body {
     font-family: 'Roboto Flex', sans-serif;
     font-weight: bold;
 }
-
-#home-jumbotron {
-    background-image: url("https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position-y: bottom;
-    height: 100%;
-    width: 100%;
-}
-
-
-@media screen and (max-width: 500px) {
-    #home-jumbotron {
-        height: 300px;
-    }
-}
