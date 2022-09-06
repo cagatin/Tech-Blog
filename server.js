@@ -4,6 +4,7 @@ const path = require('path');
 const exphbs = require('express-handlebars');
 const session = require('express-session');
 const sequelize = require('./config/connection');
+const routes = require('./routes/index');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -18,7 +19,10 @@ app.set('view engine', 'handlebars');
 // middlewear
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-// app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public')));
+
+// use routes
+app.use(routes);
 
 // todo: set up middlewear for session, routes, etc.
 
