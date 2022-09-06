@@ -24,9 +24,12 @@ Comment.init(
             allowNull: false,
         },
         postID: {
-            type: DataTypes.
-        }
-
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'posts',
+                key: 'id'
+            }
+        },
     },
     {
         sequelize,
@@ -36,4 +39,4 @@ Comment.init(
     }
 );
 
-module.exports = Post;
+module.exports = Comment;
