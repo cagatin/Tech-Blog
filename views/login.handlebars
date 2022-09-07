@@ -1,14 +1,15 @@
 <div class="container pt-5 pb-5 flex-column align-items-center">
     <h1 class="display-1 text-center" id="login-header">Log In</h1>
-    <form action="api/users/login" method="POST">
+    <form id="login-form">
         <div class="form-group mb-3">
             <label for="user-email" class="form-label">Email Adress:</label>
-            <input type="email" id="user-email" class="form-control">
+            <input type="email" id="user-email" name="email" class="form-control">
         </div>
         <div class="form-group mb-3">
             <label for="user-password" class="form-label">Password:</label>
-            <input type="email" id="user-password" class="form-control">
+            <input type="test" id="user-password" name="password" class="form-control">
         </div>
-        <button type="submit" class="btn btn-primary">Login</button>
+        <button type="submit" class="btn btn-primary" id="#submit-btn">Login</button>
     </form>
 </div>
+<script src="/js/login.js"></script>

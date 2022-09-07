@@ -5,7 +5,7 @@ const User = require('../../model/User');
 router.post('/login', async (req, res) => {
     try {
         // Find a user in our database that matches the email
-        const userData = User.findOne({
+        const userData = await User.findOne({
             where: {
                 email: req.body.email
             }
@@ -19,7 +19,7 @@ router.post('/login', async (req, res) => {
         }
 
         // Check if the password supplied in the body matches the user's password
-        const validPassword = await userData.checkPassword(req.body.password);
+        const validPassword = userData.checkPassword(req.body.password);
 
         if (!validPassword) {
             res
@@ -35,9 +35,9 @@ router.post('/login', async (req, res) => {
             res.session.loggedIn = true;
 
             res.json({ user: userData, message: "Log In Successful!" });
-        })
-
-    } catch (err) {
+        });
+    }
+    catch (err) {
         res.status(404).json(err);
     }
 });
