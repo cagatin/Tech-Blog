@@ -45,6 +45,50 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.post('/signup', async (req, res) => {
+    try {
+        // Check if email already exists
+        const checkEmailExistsData = await User.findOne({
+            where: {
+                email: req.body.email
+            }
+        });
+        if (checkEmailExistsData) {
+            res
+                .status(404)
+                .json({ message: "Email already exists!" });
+            return;
+        }
+
+        // Check if Username already exists
+        const checkUsernameExistsData = await User.findOne({
+            where: {
+                username: req.body.username
+            }
+        });
+        if (checkUsernameExistsData) {
+            res
+                .status(404)
+                .json({ message: "Username already exists!" });
+            return;
+        }
+
+        // Otherwise, create a new user
+        User.create(req.body);
+
+        // Save session and log in the user
+        req.session.save(() => {
+            req.session.loggedIn = true;
+            res
+                .status(200)
+                .json({ user: req.body, message: `Successfully created account for ${req.body.username}` });
+        })
+
+    } catch (err) {
+        res.status(404).json({ message: "Error in registering user" });
+    }
+})
+
 /*
 43:57 in lecture video
 to log someone in, use
