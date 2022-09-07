@@ -13,7 +13,7 @@ Comment.init(
         },
         username: {
             type: DataTypes.STRING,
-            allowNull: false,
+            allowNull: true,
         },
         content: {
             type: DataTypes.STRING,
@@ -21,7 +21,7 @@ Comment.init(
         },
         date: {
             type: DataTypes.DATE,
-            allowNull: false,
+            allowNull: true,
         },
         post_id: {
             type: DataTypes.INTEGER,

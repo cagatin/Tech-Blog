@@ -28,7 +28,7 @@ Post.init(
         },
         date: {
             type: DataTypes.DATE,
-            allowNull: false,
+            allowNull: true,
         },
 
     },

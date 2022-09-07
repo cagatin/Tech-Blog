@@ -22,8 +22,8 @@ const userData = [
         password: "testpassword"
     },
     {
-        username: "sandeski",
-        email: "sandeshmud@gmail.com",
+        username: "pjebba",
+        email: "patebba@gmail.com",
         password: "testpassword"
     },
 ]
