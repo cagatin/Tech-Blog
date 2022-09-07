@@ -1,6 +1,6 @@
 // create router object
 const router = require('express').Router();
-const User = require('../../model/User');
+const { User, Post, Comment } = require('../../model/index.js');
 
 router.post('/login', async (req, res) => {
     try {
@@ -75,9 +75,6 @@ router.post('/signup', async (req, res) => {
         // Otherwise, create a new user
         await User.create(req.body);
 
-        // sync the database
-        User.sync();
-
         // Save session and log in the user
         req.session.save(() => {
             req.session.loggedIn = true;
@@ -91,16 +88,27 @@ router.post('/signup', async (req, res) => {
     }
 });
 
-router.post('/logout', (req, res) => {
-    if (req.session.loggedIn) {
-        req.session.destroy(() => {
-            res.status(204).end();
-        });
+router.post('/logout', async (req, res) => {
+    try {
+        if (req.session.loggedIn) {
+            req.session.destroy(() => {
+                res
+                    .status(204)
+                    .redirect('/login')
+                    .end();
+            });
+        }
+        else {
+            res
+                .status(404)
+                .end();
+        }
     }
-    else {
-        res.status(404).end();
+    catch (err) {
+        res
+            .status(404)
+            .json({ message: "error" })
+            .end();
     }
 });
-
-
 module.exports = router;
