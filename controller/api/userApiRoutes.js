@@ -32,8 +32,7 @@ router.post('/login', async (req, res) => {
         // Set loggedIn to true on the session
         req.session.save(() => {
             req.session.user_id = userData.id;
-            res.session.username = userData.username;
-            res.session.loggedIn = true;
+            req.session.loggedIn = true;
 
             res
                 .status(200)
@@ -74,7 +73,10 @@ router.post('/signup', async (req, res) => {
         }
 
         // Otherwise, create a new user
-        User.create(req.body);
+        await User.create(req.body);
+
+        // sync the database
+        User.sync();
 
         // Save session and log in the user
         req.session.save(() => {
@@ -87,19 +89,6 @@ router.post('/signup', async (req, res) => {
     } catch (err) {
         res.status(404).json({ message: "Error in registering user" });
     }
-})
-
-/*
-43:57 in lecture video
-to log someone in, use
-req.session.save(()=> {
-    req.session.loggedIn = true;
-
-    res
-        .status(200)
-        .json({user: dbUserData, //message here})
-})
-*/
-
+});
 
 module.exports = router;

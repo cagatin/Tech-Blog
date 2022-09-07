@@ -14,9 +14,14 @@ const PORT = process.env.PORT || 3001;
 const hbs = exphbs.create({});
 
 // create session
-const sesh = {
+const sess = {
     secret: 'placeholder secret',
-    cookie: {},
+    cookie: {
+        maxAge: 1200000,     //20 minutes
+        httpOnly: true,
+        secure: false,
+        sameSite: "strict"
+    },
     resave: false,
     saveUninitiated: true,
     store: new SequelizeStore({
@@ -24,7 +29,7 @@ const sesh = {
     })
 };
 
-app.use(session(sesh));
+app.use(session(sess));
 
 // register the view enging
 app.engine('handlebars', hbs.engine);
