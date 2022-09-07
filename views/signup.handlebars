@@ -1,1 +1,21 @@
-<h1>test</h1>
+<div class="container pt-5 pb-5 flex-column align-items-center" id="sign-up-wrapper">
+    <h1 class="display-1 text-center" id="signup-header">Register!</h1>
+    <form id="signup-form">
+        {{!-- username, password, email --}}
+        <div class="form-group mb-3">
+            <label for="signup-username" class="form-label">Please Enter a Username:</label>
+            <input type="text" id="signup-username" class="form-control" placeholder="CoolGuy13" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="signup-email" class="form-label">Please Enter your Email:</label>
+            <input type="email" id="signup-email" class="form-control" placeholder="myemail@gmail.com" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="signup-test" class="form-label">Please Enter a Password:</label>
+            <input type="password" id="signup-password" class="form-control" required>
+            <input type="checkbox" id="show-checkbox" class="mt-2">Show Password
+        </div>
+        <button type="submit" class="btn btn-primary" id="submit-btn-signup">Register</button>
+    </form>
+</div>
+<script src="/js/signup.js"></script>

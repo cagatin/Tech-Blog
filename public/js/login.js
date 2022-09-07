@@ -24,4 +24,4 @@ function redirectSignIn() {
 }
 document.querySelector('#sign-up-redirect-btn').addEventListener('click', redirectSignIn);
 
-document.querySelector('#submit-btn').addEventListener('click', loginFormHandler);
+document.querySelector('#submit-btn-login').addEventListener('click', loginFormHandler);
