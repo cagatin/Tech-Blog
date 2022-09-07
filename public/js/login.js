@@ -1,4 +1,5 @@
-async function loginFormHanlder(event) {
+// Function which sends a login request to the api
+async function loginFormHandler(event) {
     event.preventDefault();
 
     const email = document.querySelector('#user-email').value.trim();
@@ -19,4 +20,4 @@ async function loginFormHanlder(event) {
     }
 }
 
-document.querySelector('#submit-btn').addEventListener('submit', loginFormHanlder);
+document.querySelector('#submit-btn').addEventListener('submit', loginFormHandler);

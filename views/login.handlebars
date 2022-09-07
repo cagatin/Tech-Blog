@@ -3,13 +3,21 @@
     <form id="login-form">
         <div class="form-group mb-3">
             <label for="user-email" class="form-label">Email Adress:</label>
-            <input type="email" id="user-email" name="email" class="form-control">
+            <input type="email" id="user-email" class="form-control">
         </div>
         <div class="form-group mb-3">
             <label for="user-password" class="form-label">Password:</label>
-            <input type="test" id="user-password" name="password" class="form-control">
+            <input type="test" id="user-password" class="form-control">
         </div>
         <button type="submit" class="btn btn-primary" id="#submit-btn">Login</button>
+        <button type="button" class="btn btn-primary" id="sign-up-redirect-btn">Sign Up</button>
     </form>
 </div>
 <script src="/js/login.js"></script>
+
+<script>
+    function redirectSignIn() {
+        document.location.href = '/signup';
+    }
+    document.querySelector('#sign-up-redirect-btn').addEventListener('click', redirectSignIn);
+</script>
