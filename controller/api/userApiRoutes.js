@@ -44,6 +44,17 @@ router.post('/login', async (req, res) => {
     }
 });
 
+router.get('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+    }
+    else {
+        res.status(404).end();
+    }
+});
+
 router.post('/signup', async (req, res) => {
     try {
         // Check if email already exists
@@ -88,27 +99,5 @@ router.post('/signup', async (req, res) => {
     }
 });
 
-router.post('/logout', async (req, res) => {
-    try {
-        if (req.session.loggedIn) {
-            req.session.destroy(() => {
-                res
-                    .status(204)
-                    .redirect('/login')
-                    .end();
-            });
-        }
-        else {
-            res
-                .status(404)
-                .end();
-        }
-    }
-    catch (err) {
-        res
-            .status(404)
-            .json({ message: "error" })
-            .end();
-    }
-});
+
 module.exports = router;
