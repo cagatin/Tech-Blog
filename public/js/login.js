@@ -15,9 +15,13 @@ async function loginFormHandler(event) {
         if (response.ok) {
             document.location.replace('/');
         } else {
-            document.location.replace('/login');
+            alert('failed to login')
         }
     }
 }
+function redirectSignIn() {
+    document.location.href = '/signup';
+}
+document.querySelector('#sign-up-redirect-btn').addEventListener('click', redirectSignIn);
 
-document.querySelector('#submit-btn').addEventListener('submit', loginFormHandler);
+document.querySelector('#submit-btn').addEventListener('click', loginFormHandler);

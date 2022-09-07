@@ -16,6 +16,7 @@ router.post('/login', async (req, res) => {
             res
                 .status(404)
                 .json({ message: "Incorrect Email!" });
+            return;
         }
 
         // Check if the password supplied in the body matches the user's password
@@ -34,10 +35,12 @@ router.post('/login', async (req, res) => {
             res.session.username = userData.username;
             res.session.loggedIn = true;
 
-            res.json({ user: userData, message: "Log In Successful!" });
+            res
+                .status(200)
+                .json({ user: userData, message: "Log In Successful!" });
+            return;
         });
-    }
-    catch (err) {
+    } catch (err) {
         res.status(404).json(err);
     }
 });
