@@ -8,4 +8,32 @@ function displayPass() {
     }
 }
 
+// Funciton to submit register data
+async function signupFormHandler(event) {
+    event.preventDefault();
+
+    const username = document.querySelector('#signup-username');
+    const email = document.querySelector('#signup-email');
+    const password = document.querySelector('#signup-password');
+
+    if (username && email && password) {
+        const response = await fetch('/api/users/signup', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                username,
+                email,
+                password
+            })
+        });
+
+        if (response.ok) {
+            document.location.replace('/');
+        } else {
+            alert('failed to create account')
+        }
+    }
+}
+
+document.querySelector('#submit-btn-signup').addEventListener('click', signupFormHandler)
 document.querySelector('#show-checkbox').addEventListener('click', displayPass);
