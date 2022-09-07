@@ -18,7 +18,6 @@
     font-size: 200%;
 }
 
-
 @media screen and (max-width: 500px) {
     #home-jumbotron {
         height: 300px;
